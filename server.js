@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 app.route('/api') 
   .get((req, res) => {
-    res.send(`Lab 5 for ${process.env.NAME}`);
+    res.send(`Team Project for ${process.env.NAME}`);
   })
   .post(async(req, res) => {
     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
