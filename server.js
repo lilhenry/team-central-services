@@ -1,6 +1,3 @@
-// These are our required libraries to make the server work.
-/* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
 import express from 'express';
 import dotenv from 'dotenv';
 import fetch from 'node-fetch';
@@ -20,13 +17,21 @@ app.use((req, res, next) => {
   next();
 });
 
-app.route('/api') 
-  .get((req, res) => {
-    res.send(`Team Project for ${process.env.NAME}`);
-  })
-  .post(async(req, res) => {
+app.route('/api')
+  .get(async (req, res) => {
+    console.log('GET request detected');
     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
     const json = await data.json();
+    console.log('data from fetch', json);
+    res.json(json);
+  })
+  .post(async (req, res) => {
+    console.log('POST request detected');
+    console.log('Form data in res.body', req.body);
+
+    const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
+    const json = await data.json();
+    console.log('data from fetch', json);
     res.json(json);
   });
 

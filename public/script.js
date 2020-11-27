@@ -1,7 +1,7 @@
-document.body.addEventListener('click', async (e) => {
+$('#breakdown').on('click', async (e) => {
   e.preventDefault();
   const div = $(e.target).serializeArray();
-  fetch('/api', {
+  fetch('http://localhost:3000/api', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -10,10 +10,9 @@ document.body.addEventListener('click', async (e) => {
   }) 
     .then((fromServer) => fromServer.json())
     .then((jsonFromServer) => {
-      const API = document.querySelector('div');
+      const API = document.createElement('div');
       API.innerHTML = `<h2>What we have</h2> <br />${JSON.stringify(jsonFromServer)}<br /><br />`;
-      console.log(jsonFromServer);
-      console.log(API);
+      $('.container').append(API);
     })
     .catch((err) => {
       console.log(err);
