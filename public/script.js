@@ -4,7 +4,7 @@ generatechart.onclick = function() {
     console.log('generate was clicked! now get data in here')
 } */
 
-const { json } = require("express");
+// const { json } = require("express");
 
 // generate bar chart
 function generatechart(jsonfromserver) {
