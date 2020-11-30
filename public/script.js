@@ -45,4 +45,4 @@ $('#generate').on('click', async (e) => {
     .catch((err) => {
       console.log(err);
     });
-});    
+});
