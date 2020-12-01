@@ -28,12 +28,18 @@ async function generateChart() {
 
 // json --> array, then array --> bar chart
 function prepareData(serverJson) {
-  // transform json into the array we need
-  //           take into account chosen attribute
+  // make an empty array
+  const data = range(serverJson.length);
+  
+  // get attribute from submitted form data
+
+  // map data into empty array using attribute
+  const newdata = data.map((i) => {
+    
+  });
+
   // call createSearch
   // call generateChart
-  //      essentially like make your options object
-  //      pass in the array
 
   createSearch(serverJson); // search button event listener
   const have = document.createElement('p');
@@ -76,4 +82,4 @@ $('#generate').on('click', async (e) => {
     .catch((err) => {
       console.log(err, 'error');
     });
-});   
+});
