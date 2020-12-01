@@ -9,6 +9,9 @@ async function searchButtonClicked(serverJson) { // takes in json data from serv
     have.className = 'is-size-2 is-uppercase is-centered';
     have.textContent = 'Our data: ';
 
+    const brkdwn = document.querySelector('#breakdown');
+    brkdwn.innerHTML = 'SEARCH';
+
     // [failed] attempt to get entered search value
     const srchBttn = document.querySelector('#search');
     console.log('real search value', srchBttn.nodeValue);
@@ -41,7 +44,10 @@ async function generateButtonClicked(serverJson) { // takes in json data from se
   // this  is where the .reduce() will go
   $('#generate').on('click', (e) => {
     e.preventDefault();
-    console.log('the chart button fxn works', serverJson);
+
+    const gen = document.querySelector('#breakdown');
+    brk.innerHTML = 'GENERATE WAS CLICKED!';
+
     // render a bar chart
     // returns the array with the attribute and count
   });
