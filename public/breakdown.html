@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Team Project Central Services</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <!--    <script
+    <script
             src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
             crossorigin="anonymous">
-        </script>       -->
+        </script>       
   </head>
   <body>
   <section class="section">
@@ -22,12 +22,41 @@
                 <h1 class="title">
                     BREAKDOWN
                 </h1>
-                <button type="submit" class="button generate">generate</button>
+                <form class="chartForm">
+                  <h3>Bar Chart</h3>
+                  <h4>check attribute option</h4>
+                  <ul class='chart-list'>
+                    <li><input type="checkbox" id="payee_name" name="chart-list">
+                        <label for="payee_name">payee_name</label></li>
+                    <li><input type="checkbox" id="agency" name="chart-list">
+                        <label for="agency">agency</label></li>
+                    <li><input type="checkbox" id="zip_code" name="chart-list">
+                        <label for="zip_code">zip_code</label></li>
+                    <li><input type="checkbox" id="amount" name="chart-list">
+                        <label for="amount">amount</label></li>
+                    <li><input type="checkbox" id="payment_description" name="chart-list">
+                        <label for="payment_description">payment_description</label></li>
+                    <li><button class="button" type="submit" name="button" id='generate'>generate</button></li>
+                </ul>
+                <br>
+                <br>
+                </form>
+                <form class="seachForm">
+                  <h3>Search</h3>
+                  <h4>by any attribute</h4>
+                  <ul class='search-list'>
+                    <li><input type="text" class="textentry" placeholder="Ex: 20742"></input></li>
+                    <li>
+                      <button class="button" type="submit" name="button" id='search'>search</button>
+                    </li>
+                </ul>
+                </form>
+                
             </div>
         </div>
     </div>
   </section>
-  <script src="script.js"></script>
-        <!-- <script src="canvasjs.min.js"></script> --> 
+    <script src="script.js"></script>
+        <script src="canvasjs.min.js"></script>         
   </body>
 </html>
