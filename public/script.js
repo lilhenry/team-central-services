@@ -12,16 +12,29 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max1 - min1 + 1) + min1); // The maximum is inclusive and the minimum is inclusive
 }
 
-// get and produce search results
-function createSearch(term, data) {
+async function createSearch(term, data) {
   $('#search').on('click', async (e) => {
     e.preventDefault();
     // return search results list
   });
 }
 
-// get json data and return bar chart data list
-function prepareData(serverJson) { // process your restaurants here!
+async function generateChart() {
+  $('#generate').on('click', async (e) => {
+    e.preventDefault();
+    // render a bar chart
+  });
+}
+
+// json --> array, then array --> bar chart
+function prepareData(serverJson) {
+  // transform json into the array we need
+  //           take into account chosen attribute
+  // call createSearch
+  // call generateChart
+  //      essentially like make your options object
+  //      pass in the array
+
   createSearch(serverJson); // search button event listener
   const have = document.createElement('p');
   have.className = 'title is-uppercase is-centered';
@@ -39,7 +52,7 @@ function prepareData(serverJson) { // process your restaurants here!
     API.innerHTML = `<h4><span class='is-size-4'>payee:  </span>${payee}</h4>
                       <p><span class='is-size-4'>agency:  </span>${agency}</p>
                       <p><span class='is-size-4'>zip:  </span>${zip}</p>
-                      <p><span class='is-size-4'>amount:  </span>${amount}</p> 
+                      <p><span class='is-size-4'>amount:  </span>${amount}</p>
                       <p><span class='is-size-4'>description:  </span>${description}</p>
                       <p>----------------</p>
                       <br>`;
@@ -47,12 +60,7 @@ function prepareData(serverJson) { // process your restaurants here!
   }
 }
 
-// create bar chart
-function generateChart(chartData) {
-
-}
-
-// generate button click -- run server
+// runs on window load
 $('#generate').on('click', async (e) => {
   e.preventDefault();
   const div = $(e.target).serializeArray();
@@ -68,4 +76,4 @@ $('#generate').on('click', async (e) => {
     .catch((err) => {
       console.log(err, 'error');
     });
-});    
+});   
