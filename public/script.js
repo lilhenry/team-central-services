@@ -13,7 +13,6 @@ function generatechart(jsonfromserver) {
 }
 
 document.body.addEventListener('submit', async (e) => {
-  console.log('hit generate');
     e.preventDefault();
 
     const form = $(e.target).serializeArray();

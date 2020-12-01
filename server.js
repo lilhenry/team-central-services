@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.route('/api') 
+app.route('/api')
   .get((req, res) => {
     res.send(`Team Project for ${process.env.NAME}`);
   })
