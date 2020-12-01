@@ -22,7 +22,6 @@ app.route('/api')
     console.log('GET request detected');
     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
     const json = await data.json();
-    console.log('data from fetch', json);
     res.json(json);
   })
   .post(async (req, res) => {
@@ -31,7 +30,7 @@ app.route('/api')
 
     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
     const json = await data.json();
-    console.log('data from fetch', json);
+    // console.log('data from fetch', json);
     res.json(json);
   });
 
