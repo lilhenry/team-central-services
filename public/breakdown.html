@@ -1,61 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Team Project Central Services</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
-    <script
-            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-            crossorigin="anonymous">
-        </script>       
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>       
   </head>
+
   <body>
-  <section class="section">
-    <div class="container">
-      <a href="index.html" class="button is-small is-outlined is-rounded">home</a>
-    </div>
-    <div class="container is-centered">
-      <div class="column is-narrow is-vcentered">
-        <h1 class="title is-centered ml-5" id='breakdown'>
-            BREAKDOWN
-        </h1></div>
+    <section class="section">
+
+      <!-- navigation -->
+
+      <div class="container">
+        <a href="index.html" class="button is-small is-outlined is-rounded">home</a>
+      </div>
+
+      <div class="container is-centered">
+        <div class="column is-narrow is-centered">
+          <h1 class="title has-text-centered" id='breakdown'>BREAKDOWN</h1>
+        </div>
+
         <div class="columns is-centered is-vcentered">
-                <form class=" column chartForm is-8">
-                  <h3 class='is-size-4'>Bar Chart</h3>
-                  <h4>check attribute option</h4>
-                  <ul class='chart-list'>
-                    <li><input type="radio" id="payee_name" name="chart-list">
-                        <label for="payee_name">payee_name</label></li>
-                    <li><input type="radio" id="agency" name="chart-list">
-                        <label for="agency">agency</label></li>
-                    <li><input type="radio" id="zip_code" name="chart-list">
-                        <label for="zip_code">zip_code</label></li>
-                        <br>
-                    <li><button class="button is-black" type="submit" name="button" id='generate'>generate</button></li>
-                </ul>
+
+          <!-- bar chart options -->
+
+          <form class=" column chartForm is-centered has-text-centered">
+            <h3 class='is-size-4'>Bar Chart</h3>
+            <h4>check attribute option</h4>
+            <br>
+            <ul class='chart-list'>
+              <li>
+                <input type="radio" id="payee_name" name="chart-list" value="payee_name" checked>
+                <label for="payee_name">payee_name</label>
+              </li>
+              <li>
+                <input type="radio" id="agency" name="chart-list" value="agency">
+                <label for="agency">agency</label>
+              </li>
+              <li><input type="radio" id="zip_code" name="chart-list" value="zip_code">
+                <label for="zip_code">zip_code</label>
+              </li>
+              <li>
                 <br>
+                <button class="button is-black" type="submit" name="button" id='generate'>generate</button>
+              </li>
+            </ul>
+            <br>
+            <br>
+          </form>
+
+          <!-- search bar -->
+
+          <form class=" column seachForm is-centered has-text-centered">
+            <h3 class='is-size-4'>Search</h3>
+            <h4>by any attribute</h4>
+            <br>
+            <ul class='search-list'>
+              <li>
+                <input type="text" class="textentry" placeholder="Ex: 20742" id="search"></input>
+              </li>
+              <li>
                 <br>
-                </form>
-                <form class=" column seachForm">
-                  <h3 class='is-size-4'>Search</h3>
-                  <h4>by any attribute</h4>
-                  <ul class='search-list'>
-                    <li><input type="text" class="textentry" placeholder="Ex: 20742"></input></li>
-                    <li>
-                      <br>
-                      <button class="button is-black" type="submit" name="button" id='search'>search</button>
-                    </li>
-                </ul>
-                </form>
-                <div class='search-results'> </div>
-                
-            
+                <button class="button is-black" type="submit" name="button" id='search-btn'>search</button>
+              </li>
+            </ul>
+          </form>
+          
+          <!-- populate with search results -->
+
+          <div class='search-results'></div>
+
         </div>
     </div>
   </section>
     <script src="script.js"></script>
-        <script src="canvasjs.min.js"></script>         
+    <script src="canvasjs.min.js"></script>         
   </body>
 </html>

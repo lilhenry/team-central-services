@@ -1,7 +1,18 @@
+// this function will eventually create the divs based on the returned array
+async function createSearch() { // this will take the array with selected attribute as a parameter 
+  // iterates over array and creates a div to store each result
+}
+
+// this function creates the chart container using the returned x and y values array
+async function generateChart() { // this will take the array with selected attribute as a parameter 
+  // , the {x: attribute, y: value} for canvasJS (similar to the makeOptions fxn)
+  // choose canvasJS colors for the bars
+}
+
 // this is called to check if the search button is clicked (it creates the event listener for the search button)
 async function searchButtonClicked(serverJson) { // takes in json data from server as parameter
   // this is where the .filter() and more will go
-  $('#search').on('click', (e) => { // this line makes the function run only IF the search button is clicked
+  $('#search-btn').on('click', (e) => { // this line makes the function run only IF the search button is clicked
     e.preventDefault();
 
     // the rest for now is just for testing -- it creates divs to show all our data
@@ -11,10 +22,6 @@ async function searchButtonClicked(serverJson) { // takes in json data from serv
 
     const brkdwn = document.querySelector('#breakdown');
     brkdwn.innerHTML = 'SEARCH';
-
-    // [failed] attempt to get entered search value
-    const srchBttn = document.querySelector('#search');
-    console.log('real search value', srchBttn.nodeValue);
 
     $('.search-results').append(have);
     for (let obj = 0; obj < serverJson.length; obj += 1) { 
@@ -35,8 +42,10 @@ async function searchButtonClicked(serverJson) { // takes in json data from serv
                         <br>`;
       $('.search-results').append(API);
     }
+    createSearch(); // creates search results divs, takes in array (.filter fxn) from search bttn as parameter
+    const searchquery = document.querySelector('#search-btn').value;
+    console.log('search query post ', searchquery);
   });
-  return true; // will return search array, just put true to prevent it from crashing
 }
 
 // this is called to check if the generate button is clicked (it creates the event listener for the generate button)
@@ -46,58 +55,35 @@ async function generateButtonClicked(serverJson) { // takes in json data from se
     e.preventDefault();
 
     const gen = document.querySelector('#breakdown');
-    brk.innerHTML = 'GENERATE WAS CLICKED!';
+    gen.innerHTML = 'GENERATE WAS CLICKED!';
 
     // render a bar chart
     // returns the array with the attribute and count
+    generateChart(); // takes in array (.reduce fxn) from button and render chart container
+    const attribute = document.querySelector('input[name="chart-list"]:checked').value;
+    console.log('attribute post', attribute);
   });
-  return true; // will return search array, just put true to prevent it from crashing
 }
-
-// this function will eventually create the divs based on the returned array
-async function createSearch() { // this will take the array with selected attribute as a parameter 
-  // iterates over array and creates a div to store each result
-}
-// this function creates the chart container using the returned x and y values array
-async function generateChart() { // this will take the array with selected attribute as a parameter 
-// , the {x: attribute, y: value} for canvasJS (similar to the makeOptions fxn)
-  // choose canvasJS colors for the bars
-}
-
  
 function main(jsonFromServer) {
-  // we need the values from the submitted buttons (the attributes selected and search term) from the form
+  // radio button attribute value
+  const attribute = document.querySelector('input[name="chart-list"]:checked').value;
+  console.log('attribute ', attribute);
 
-  // json --> array, then array --> bar chart
-  const doesTheUserWantAChart = generateButtonClicked(jsonFromServer); // this returns the array by the selected attribute
-  generateChart(doesTheUserWantAChart); // generate button event listener
+  // search bar value
+  const searchquery = document.querySelector('#search').value;
+  console.log('search query ', searchquery);
 
-  // json --> array, then array --> search results
-  const doesTheUserWantToSearch = searchButtonClicked(jsonFromServer); // this returns the array based on entered search term -- need to retrieve from server
-  createSearch(doesTheUserWantToSearch); // search button event listener
-  
-
-  // make an empty array
- // const data = range(serverJson.length);
-  
-  // get attribute from submitted form data
-
-  // map data into empty array using attribute
- //  const newdata = data.map((i) => {
-  
- // });
-
-  // call createSearch
-  // call generateChart
+  // creates button listeners and runs fxn with selected/entered data attribute
+  generateButtonClicked(jsonFromServer); // runs once generate button is clicked
+  searchButtonClicked(jsonFromServer); // runs once search button is clicked
 }
 
 
 
-
-
-// runs on window load
-// gets api data from server
+// runs on window load: gets api data from server
 $(window).on('load', async (e) => {
+
   e.preventDefault();
   const div = $(e.target).serializeArray();
   fetch('/api', { 
@@ -113,3 +99,6 @@ $(window).on('load', async (e) => {
       console.log(err, 'error');
     });
 });
+// questions: 
+// is it better to call a fxn with a listener inside or run the fxn inside a listener?
+// change generateChart() to renderChart()?
