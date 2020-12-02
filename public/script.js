@@ -84,12 +84,12 @@ function main(jsonFromServer) {
   
 
   // make an empty array
- // const data = range(serverJson.length);
+  // const data = range(serverJson.length);
   
   // get attribute from submitted form data
 
   // map data into empty array using attribute
- //  const newdata = data.map((i) => {
+  //  const newdata = data.map((i) => {
   
  // });
 
