@@ -63,7 +63,6 @@ async function generateChart() { // this will take the array with selected attri
 // , the {x: attribute, y: value} for canvasJS (similar to the makeOptions fxn)
   // choose canvasJS colors for the bars
 }
-
  
 function main(jsonFromServer) {
   // we need the values from the submitted buttons (the attributes selected and search term) from the form
