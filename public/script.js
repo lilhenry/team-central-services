@@ -65,7 +65,14 @@ async function generateChart() { // this will take the array with selected attri
 }
  
 function main(jsonFromServer) {
-  // we need the values from the submitted buttons (the attributes selected and search term) from the form
+
+  // radio button attribute value
+  const attribute = document.querySelector('input[name="chart-list"]:checked').value;
+  console.log('attribute '+attribute);
+
+  // search bar value
+  const searchquery = document.querySelector('#search').value;
+  console.log('search query '+searchquery);
 
   // json --> array, then array --> bar chart
   const doesTheUserWantAChart = generateButtonClicked(jsonFromServer); // this returns the array by the selected attribute
@@ -94,11 +101,12 @@ function main(jsonFromServer) {
 
 
 
-// runs on window load
-// gets api data from server
+// runs on window load: gets api data from server
 $(window).on('load', async (e) => {
+
   e.preventDefault();
   const div = $(e.target).serializeArray();
+
   fetch('/api', { 
     method: 'POST',
     headers: {
