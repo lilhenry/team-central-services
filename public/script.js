@@ -97,10 +97,6 @@ function main(jsonFromServer) {
   // call generateChart
 }
 
-
-
-
-
 // runs on window load: gets api data from server
 $(window).on('load', async (e) => {
 
