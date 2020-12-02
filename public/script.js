@@ -98,6 +98,17 @@ $(window).on('load', async (e) => {
       console.log(err, 'error');
     });
 });
-// questions:
-// is it better to call a fxn with a listener inside or run the fxn inside a listener?
-// change generateChart() to renderChart()?
+
+// app token from pg county (1000 records issue)
+//     hit pg county when server turns on
+//     
+
+// main thread
+//      fetch await
+//      to json
+//      event listener for generate button click
+//      event listener for search button click
+
+// presentation: note difficulties with api records
+
+// https://dev.socrata.com/foundry/data.princegeorgescountymd.gov/p32t-azw8
