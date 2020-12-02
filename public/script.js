@@ -14,7 +14,7 @@ async function searchButtonClicked(serverJson) { // takes in json data from serv
 
     // [failed] attempt to get entered search value
     const srchBttn = document.querySelector('#search');
-    console.log('real search value', srchBttn.nodeValue);
+    console.log('real search value', e.textContent, e.target.innerHTML, e.target.innerText, e.target.onsubmit);
 
     $('.search-results').append(have);
     for (let obj = 0; obj < serverJson.length; obj += 1) { 
@@ -46,7 +46,7 @@ async function generateButtonClicked(serverJson) { // takes in json data from se
     e.preventDefault();
 
     const gen = document.querySelector('#breakdown');
-    brk.innerHTML = 'GENERATE WAS CLICKED!';
+    gen.innerHTML = 'GENERATE WAS CLICKED!';
 
     // render a bar chart
     // returns the array with the attribute and count
@@ -100,7 +100,7 @@ function main(jsonFromServer) {
 $(window).on('load', async (e) => {
   e.preventDefault();
   const div = $(e.target).serializeArray();
-  fetch('/api', { 
+  fetch('http://localhost:3000/api', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
