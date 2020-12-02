@@ -7,6 +7,8 @@ async function createSearch() { // this will take the array with selected attrib
 async function generateChart() { // this will take the array with selected attribute as a parameter 
   // , the {x: attribute, y: value} for canvasJS (similar to the makeOptions fxn)
   // choose canvasJS colors for the bars
+  const attribute = document.querySelector('input[name="chart-list"]:checked').value;
+  console.log('attribute post', attribute);
 }
 
 // this is called to check if the search button is clicked (it creates the event listener for the search button)
@@ -60,8 +62,6 @@ async function generateButtonClicked(serverJson) { // takes in json data from se
     // render a bar chart
     // returns the array with the attribute and count
     generateChart(); // takes in array (.reduce fxn) from button and render chart container
-    const attribute = document.querySelector('input[name="chart-list"]:checked').value;
-    console.log('attribute post', attribute);
   });
 }
 
