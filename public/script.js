@@ -64,8 +64,9 @@ async function generateButtonClicked(serverJson) { // takes in json data from se
     console.log('attribute post', attribute);
   });
 }
- 
+
 function main(jsonFromServer) {
+
   // radio button attribute value
   const attribute = document.querySelector('input[name="chart-list"]:checked').value;
   console.log('attribute ', attribute);
@@ -79,13 +80,11 @@ function main(jsonFromServer) {
   searchButtonClicked(jsonFromServer); // runs once search button is clicked
 }
 
-
-
 // runs on window load: gets api data from server
 $(window).on('load', async (e) => {
-
   e.preventDefault();
   const div = $(e.target).serializeArray();
+
   fetch('/api', { 
     method: 'POST',
     headers: {
@@ -99,6 +98,6 @@ $(window).on('load', async (e) => {
       console.log(err, 'error');
     });
 });
-// questions: 
+// questions:
 // is it better to call a fxn with a listener inside or run the fxn inside a listener?
 // change generateChart() to renderChart()?
