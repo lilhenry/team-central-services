@@ -68,12 +68,12 @@ async function generateButtonClicked(serverJson) { // takes in json data from se
 function main(jsonFromServer) {
 
   // radio button attribute value
-  const attribute = document.querySelector('input[name="chart-list"]:checked').value;
-  console.log('attribute ', attribute);
+  // const attribute = document.querySelector('input[name="chart-list"]:checked').value;
+  // console.log('attribute ', attribute);
 
   // search bar value
-  const searchquery = document.querySelector('#search').value;
-  console.log('search query ', searchquery);
+  // const searchquery = document.querySelector('#search').value;
+  // console.log('search query ', searchquery);
 
   // creates button listeners and runs fxn with selected/entered data attribute
   generateButtonClicked(jsonFromServer); // runs once generate button is clicked
