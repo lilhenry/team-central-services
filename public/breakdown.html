@@ -20,16 +20,17 @@
 
       <div class="container is-centered">
         <div class="column is-narrow is-centered">
-          <h1 class="title is-centered ml-5" id='breakdown'>BREAKDOWN</h1>
+          <h1 class="title has-text-centered" id='breakdown'>BREAKDOWN</h1>
         </div>
 
         <div class="columns is-centered is-vcentered">
 
           <!-- bar chart options -->
 
-          <form class=" column chartForm is-centered">
+          <form class=" column chartForm is-centered has-text-centered">
             <h3 class='is-size-4'>Bar Chart</h3>
             <h4>check attribute option</h4>
+            <br>
             <ul class='chart-list'>
               <li>
                 <input type="radio" id="payee_name" name="chart-list" value="payee_name" checked>
@@ -43,7 +44,8 @@
                 <label for="zip_code">zip_code</label>
               </li>
               <li>
-                <button class="button" type="submit" name="button" id='generate'>generate</button>
+                <br>
+                <button class="button is-black" type="submit" name="button" id='generate'>generate</button>
               </li>
             </ul>
             <br>
@@ -52,15 +54,17 @@
 
           <!-- search bar -->
 
-          <form class=" column seachForm is-centered">
+          <form class=" column seachForm is-centered has-text-centered">
             <h3 class='is-size-4'>Search</h3>
             <h4>by any attribute</h4>
+            <br>
             <ul class='search-list'>
               <li>
                 <input type="text" class="textentry" placeholder="Ex: 20742" id="search"></input>
               </li>
               <li>
-                <button class="button" type="submit" name="button" id='search-btn'>search</button>
+                <br>
+                <button class="button is-black" type="submit" name="button" id='search-btn'>search</button>
               </li>
             </ul>
           </form>
