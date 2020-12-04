@@ -10,10 +10,22 @@ async function generateChart() { // this will take the array with selected attri
 }
 
 // this is called to check if the search button is clicked (it creates the event listener for the search button)
-async function searchButtonClicked(serverJson) { // takes in json data from server as parameter
+async function searchButtonClicked(enteredInput, serverfromjson) { // takes in user entered input as parameter
   // this is where the .filter() and more will go
   $('#search-btn').on('click', (e) => { // this line makes the function run only IF the search button is clicked
     e.preventDefault();
+
+    const filteredJsonBySearchTerm = serverfromjson.filter((budgetEntry) => {
+      const srch = document.querySelector('#search').value;
+      const regex = new RegExp(srch, 'gi'); // This matches case-insensitively through the whole string
+      // console.log(budgetEntry.target.zip_code.match(regex), 'regex');
+      // check input in all attributes -- need to condense the line however
+      console.log(regex, 'in regexx');
+      console.log(srch, 'in filter');
+      console.log(budgetEntry.zip_code, 'in attr');
+
+      return budgetEntry.zip_code.match(regex); 
+    });
 
     // the rest for now is just for testing -- it creates divs to show all our data
     const have = document.createElement('p');
@@ -24,12 +36,12 @@ async function searchButtonClicked(serverJson) { // takes in json data from serv
     brkdwn.innerHTML = 'SEARCH';
 
     $('.search-results').append(have);
-    for (let obj = 0; obj < serverJson.length; obj += 1) { 
-      const payee = serverJson[obj].payee_name;
-      const agency = serverJson[obj].agency;
-      const zip = serverJson[obj].zip_code;
-      const amount = serverJson[obj].amount;
-      const description = serverJson[obj].payment_description;
+    for (let obj = 0; obj < filteredJsonBySearchTerm.length; obj += 1) {
+      const payee = filteredJsonBySearchTerm[obj].payee_name;
+      const agency = filteredJsonBySearchTerm[obj].agency;
+      const zip = filteredJsonBySearchTerm[obj].zip_code;
+      const amount = filteredJsonBySearchTerm[obj].amount;
+      const description = filteredJsonBySearchTerm[obj].payment_description;
 
       // div append just to see/check api data is present
       const API = document.createElement('div');
@@ -43,7 +55,7 @@ async function searchButtonClicked(serverJson) { // takes in json data from serv
       $('.search-results').append(API);
     }
     createSearch(); // creates search results divs, takes in array (.filter fxn) from search bttn as parameter
-    const searchquery = document.querySelector('#search-btn').value;
+    const searchquery = document.querySelector('#search').value;
     console.log('search query post ', searchquery);
   });
 }
@@ -66,6 +78,10 @@ async function generateButtonClicked(serverJson) { // takes in json data from se
 }
  
 function main(jsonFromServer) {
+
+  for (let obj = 0; obj < jsonFromServer.length; obj += 1) {
+  console.log(jsonFromServer[obj].zip_code, 'jsnzip');
+  }
   // radio button attribute value
   const attribute = document.querySelector('input[name="chart-list"]:checked').value;
   console.log('attribute ', attribute);
@@ -76,7 +92,7 @@ function main(jsonFromServer) {
 
   // creates button listeners and runs fxn with selected/entered data attribute
   generateButtonClicked(jsonFromServer); // runs once generate button is clicked
-  searchButtonClicked(jsonFromServer); // runs once search button is clicked
+  searchButtonClicked(searchquery, jsonFromServer); // runs once search button is clicked
 }
 
 
@@ -86,7 +102,7 @@ $(window).on('load', async (e) => {
 
   e.preventDefault();
   const div = $(e.target).serializeArray();
-  fetch('/api', { 
+  fetch('http://localhost:3000/api', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
