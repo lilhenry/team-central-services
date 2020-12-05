@@ -14,7 +14,8 @@ function renderChart(attributeArray) {
     '#003f5c',
     '#58508d',
     '#ff6361',
-    '#ffa600'// canvasJS colorsets: https://canvasjs.com/docs/charts/chart-options/colorset/
+    '#ffa600',
+    '#ff3616'// canvasJS colorsets: https://canvasjs.com/docs/charts/chart-options/colorset/
   ]);
 
   return {
@@ -86,7 +87,7 @@ async function mainThread() {
     
     // for testing generateBtn functionality
     const outputheader = document.querySelector('#breakdown');
-    outputheader.innerHTML = 'GENERATE WAS CLICKED, check console for *correct* array (try agency for best results for now)';
+    outputheader.innerHTML = 'GENERATE WAS CLICKED, check console for *correct* array (use agency until we get the token working)';
 
         // radio button (attribute) value
         const attribute = document.querySelector('input[name="chart-list"]:checked').value;
