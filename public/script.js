@@ -11,10 +11,10 @@ function range(int) {
 function renderChart(attributeArray) {
   // initialize and return chart configuration 
   CanvasJS.addColorSet('customColorSet1', [
-    '#003f5c',
+    '#ffa600',
     '#58508d',
     '#ff6361',
-    '#ffa600',
+    '#003f5c',
     '#ff3616'// canvasJS colorsets: https://canvasjs.com/docs/charts/chart-options/colorset/
   ]);
 
