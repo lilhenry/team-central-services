@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('public')); // checks everything in public for matching directory
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -19,15 +19,16 @@ app.use((req, res, next) => {
 
 app.route('/api')
   .get(async (req, res) => {
-    console.log('GET request detected');
-    const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
-    const json = await data.json();
-    res.json(json);
+     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
+     const json = await data.json();
+     res.json(json);
+     console.log('GET request detected');
   })
+  
   .post(async (req, res) => {
     console.log('POST request detected');
-    console.log('Form data in res.body', req.body);
-
+    console.log('Form data in res.body', req.body); // req.body would contain info from form 
+    // feeding our server the json 
     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
     const json = await data.json();
     res.json(json);
