@@ -9,6 +9,8 @@ function range(int) {
 
 // returns chartOptions to be rendered
 function renderChart(attributeArray) {
+   // for testing
+  console.log(attributeArray, 'this should contain the array with the selected attribute');
   // initialize and return chart configuration 
   CanvasJS.addColorSet('customColorSet1', [
     '#ffa600',
