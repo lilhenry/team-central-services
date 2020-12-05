@@ -14,7 +14,8 @@ function renderChart(attributeArray) {
     '#003f5c',
     '#58508d',
     '#ff6361',
-    '#ffa600'// canvasJS colorsets: https://canvasjs.com/docs/charts/chart-options/colorset/
+    '#ffa600',
+    '#ff3616'// canvasJS colorsets: https://canvasjs.com/docs/charts/chart-options/colorset/
   ]);
 
   return {
