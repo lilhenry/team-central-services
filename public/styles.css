@@ -13,3 +13,11 @@ width: 100%;
 .columns {
     height: 100%;
 }
+
+.has-text-centered {
+    width: 100%;
+}
+
+.title {
+    padding: 5%;
+}
