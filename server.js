@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 
 app.route('/api')
   .get(async (req, res) => {
-     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json$$app_token=APP_TOKEN');
+     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
      const json = await data.json();
      console.log('GET request detected');
      // res.header('Access-Control-Allow-Headers', 'X-App-Token');
