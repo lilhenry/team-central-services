@@ -1,3 +1,7 @@
+// async function createSearch(searchQuery, json) {
+
+// }
+// this gives us an array to map our json object over
 // this gives us an array to map our json object over
 function range(int) {
   const arr = [];
@@ -42,7 +46,7 @@ async function mainThread() {
   const data = await fetch('/api', { // don't forget to change from http://localhost:3000/api
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       // need to figure out how to pass the token in the post headers 
       // 'X-App-Token': '1ukZDsQi4C3DQhMJusKqTZD1s'
     },
@@ -52,6 +56,7 @@ async function mainThread() {
       console.log(err);
     });
   const json = await data.json(); // raw json data
+  console.log(json.length , '<=if this is < 1000 the app token isnt working');
 
   // *********************  
   // now that we have our data, we can run our button functioning below
