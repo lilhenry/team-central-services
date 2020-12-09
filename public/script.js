@@ -1,5 +1,8 @@
+// async function createSearch(searchQuery, json) {
+
+// }
 // this gives us an array to map our json object over
-function range(int) {
+async function range(int) {
   const arr = [];
   for (let i = 0; i < int; i += 1) {
     arr.push(i);
@@ -8,7 +11,7 @@ function range(int) {
 }
 
 // returns chartOptions to be rendered
-function renderChart(attributeArray) {
+async function renderChart(attributeArray) {
    // for testing
   console.log(attributeArray, 'this should contain the array with the selected attribute');
   // initialize and return chart configuration 
@@ -52,6 +55,7 @@ async function mainThread() {
       console.log(err);
     });
   const json = await data.json(); // raw json data
+  console.log(json.length, 'if this is <= 1000 records then the token isnt working');
 
   // *********************  
   // now that we have our data, we can run our button functioning below
@@ -63,24 +67,26 @@ async function mainThread() {
 
   // this will fire once the search button is clicked
   searchBtn.on('click', (e) => {
-    console.log('e search ', e);
     e.preventDefault(); // prevent event web default
-    const srchHdr = document.querySelector('#breakdown');
-    srchHdr.innerHTML = 'SEARCH WAS CLICKED';
+    document.querySelector('#breakdown').innerHTML = 'SEARCH WAS CLICKED';
 
     // grab search input value
-    const searchquery = document.querySelector('#search').value; // search bar value
-    console.log('search query ', searchquery);
+    const searchQuery = document.querySelector('#search').value; // search bar value
+    console.log('search query ', searchQuery);
 
-    // pass search query into fxn to create container divs for results
-    // createSearch(searchquery, json);
+    // pass searchQuery into fxn to create array and search for the user's query
+    // const searchResultsArray = await createSearch(searchQuery, json); // returns array with matches
+
+    //  then, we can create container divs with results from createSearch(), it would be something like this:
+    // const searchResultsDiv = document.createElement('div');
+    // $('#searchForm').append(searchResultsDiv); // populate page with divs containing each search result
   });
 
   // this will fire once the generate button is clicked
   generateBtn.on('click', (e) => {
     e.preventDefault(); // prevent event web default
 
-     // remove search options if generate clicked?
+    // remove search options if generate clicked?
     // do we want the split screen the entire time?
     // or do we want the chart to take up most of the space?
     if (document.querySelector('#searchForm')) {
@@ -95,7 +101,7 @@ async function mainThread() {
         const attribute = document.querySelector('input[name="chart-list"]:checked').value;
 
         // create array with json.length and map over it with json object
-        const arrayWithJsonLength = range(json.length);
+        const arrayWithJsonLength = await range(json.length);
         const newArray = arrayWithJsonLength.map((arrayElement) => json[arrayElement]); // this converts our json object to an array
       
         // our final array reduces the array to the attribute and amount total spent per unique attribute chosen
@@ -125,7 +131,7 @@ async function mainThread() {
         // create new div chart container and render chart
         const chartDiv = document.createElement('div');
         chartDiv.id = 'chartcontainer';
-        const chartOptions = renderChart(FinalArray);
+        const chartOptions = await renderChart(FinalArray);
         const chart = new CanvasJS.Chart(chartDiv, chartOptions);
         chart.render();
         // append chart container to end of the chart form
