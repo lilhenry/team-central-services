@@ -13,3 +13,7 @@ width: 100%;
 .columns {
     height: 100%;
 }
+
+h1 {
+    line-height: 150%;
+}
