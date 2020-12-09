@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <section class="section">
+    <section class="section" id="section">
 
       <!-- navigation -->
 
@@ -23,12 +23,11 @@
           <h1 class="title has-text-centered" id='breakdown'>BREAKDOWN</h1>
         </div>
 
-        <br>
-
-        <div class="columns is-centered is-vcentered">
+        <div class="columns is-centered is-vcentered" >
 
           <!-- bar chart options -->
-          <form class="column chartForm is-centered has-text-centered">
+
+          <form class=" column chartForm is-centered has-text-centered" id='chartForm'>
             <h3 class='is-size-4'>Bar Chart</h3>
             <h4>check attribute option</h4>
             <br>
@@ -55,7 +54,7 @@
 
           <!-- search bar -->
 
-          <form class=" column seachForm is-centered has-text-centered">
+          <form class=" column seachForm is-centered has-text-centered" id='searchForm'>
             <h3 class='is-size-4'>Search</h3>
             <h4>by any attribute</h4>
             <br>
@@ -70,9 +69,9 @@
             </ul>
           </form>
           
-          <!-- populate with search results -->
+          <!-- rendered chart container -->
 
-          <div class='search-results'></div>
+          <div id='chartcontainer'></div>
 
         </div>
     </div>

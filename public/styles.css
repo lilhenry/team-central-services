@@ -5,3 +5,11 @@ body {
 .title {
     padding-left: 25%;
 }
+#chartContainer {
+height: 80%; 
+width: 100%;
+}
+
+.columns {
+    height: 100%;
+}

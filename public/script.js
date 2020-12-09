@@ -1,104 +1,146 @@
-// this function will eventually create the divs based on the returned array
-async function createSearch() { // this will take the array with selected attribute as a parameter 
-  // iterates over array and creates a div to store each result
+// async function createSearch(searchQuery, json) {
+
+// }
+// this gives us an array to map our json object over
+// this gives us an array to map our json object over
+function range(int) {
+  const arr = [];
+  for (let i = 0; i < int; i += 1) {
+    arr.push(i);
+  }
+  return arr;
 }
 
-// this function creates the chart container using the returned x and y values array
-async function generateChart() { // this will take the array with selected attribute as a parameter 
-  // , the {x: attribute, y: value} for canvasJS (similar to the makeOptions fxn)
-  // choose canvasJS colors for the bars
+// returns chartOptions to be rendered
+function renderChart(attributeArray) {
+   // for testing
+  console.log(attributeArray, 'this should contain the array with the selected attribute');
+  // initialize and return chart configuration 
+  CanvasJS.addColorSet('customColorSet1', [
+    '#ffa600',
+    '#58508d',
+    '#ff6361',
+    '#003f5c',
+    '#ff3616'// canvasJS colorsets: https://canvasjs.com/docs/charts/chart-options/colorset/
+  ]);
+
+  return {
+    animationEnabled: true,
+    colorSet: 'customColorSet1',
+    title: {
+      text: document.querySelector('input[name="chart-list"]:checked').value
+    },
+    data: [{
+      type: 'column',
+      name: 'attribute',
+      axisYType: 'primary',
+      dataPoints: attributeArray
+    }]
+  };
 }
 
-// this is called to check if the search button is clicked (it creates the event listener for the search button)
-async function searchButtonClicked(serverJson) { // takes in json data from server as parameter
-  // this is where the .filter() and more will go
-  $('#search-btn').on('click', (e) => { // this line makes the function run only IF the search button is clicked
-    e.preventDefault();
-
-    // the rest for now is just for testing -- it creates divs to show all our data
-    const have = document.createElement('p');
-    have.className = 'is-size-2 is-uppercase is-centered';
-    have.textContent = 'Our data: ';
-
-    const brkdwn = document.querySelector('#breakdown');
-    brkdwn.innerHTML = 'SEARCH';
-
-    $('.search-results').append(have);
-    for (let obj = 0; obj < serverJson.length; obj += 1) { 
-      const payee = serverJson[obj].payee_name;
-      const agency = serverJson[obj].agency;
-      const zip = serverJson[obj].zip_code;
-      const amount = serverJson[obj].amount;
-      const description = serverJson[obj].payment_description;
-
-      // div append just to see/check api data is present
-      const API = document.createElement('div');
-      API.innerHTML = `<h4><span class='is-size-4'>payee:  </span>${payee}</h4>
-                        <p><span class='is-size-4'>agency:  </span>${agency}</p>
-                        <p><span class='is-size-4'>zip:  </span>${zip}</p>
-                        <p><span class='is-size-4'>amount:  </span>${amount}</p>
-                        <p><span class='is-size-4'>description:  </span>${description}</p>
-                        <p>----------------</p>
-                        <br>`;
-      $('.search-results').append(API);
-    }
-    createSearch(); // creates search results divs, takes in array (.filter fxn) from search bttn as parameter
-    const searchquery = document.querySelector('#search-btn').value;
-    console.log('search query post ', searchquery);
-  });
-}
-
-// this is called to check if the generate button is clicked (it creates the event listener for the generate button)
-async function generateButtonClicked(serverJson) { // takes in json data from server as parameter
-  // this  is where the .reduce() will go
-  $('#generate').on('click', (e) => {
-    e.preventDefault();
-
-    const gen = document.querySelector('#breakdown');
-    gen.innerHTML = 'GENERATE WAS CLICKED!';
-
-    // render a bar chart
-    // returns the array with the attribute and count
-    generateChart(); // takes in array (.reduce fxn) from button and render chart container
-    const attribute = document.querySelector('input[name="chart-list"]:checked').value;
-    console.log('attribute post', attribute);
-  });
-}
- 
-function main(jsonFromServer) {
-  // radio button attribute value
-  const attribute = document.querySelector('input[name="chart-list"]:checked').value;
-  console.log('attribute ', attribute);
-
-  // search bar value
-  const searchquery = document.querySelector('#search').value;
-  console.log('search query ', searchquery);
-
-  // creates button listeners and runs fxn with selected/entered data attribute
-  generateButtonClicked(jsonFromServer); // runs once generate button is clicked
-  searchButtonClicked(jsonFromServer); // runs once search button is clicked
-}
-
-
-
-// runs on window load: gets api data from server
-$(window).on('load', async (e) => {
-
-  e.preventDefault();
-  const div = $(e.target).serializeArray();
-  fetch('/api', { 
+// main thread
+async function mainThread() {
+  const form = $(this).serializeArray();
+  // data retrieval
+  const data = await fetch('/api', { // don't forget to change from http://localhost:3000/api
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      // need to figure out how to pass the token in the post headers 
+      // 'X-App-Token': '1ukZDsQi4C3DQhMJusKqTZD1s'
     },
-    body: JSON.stringify(div),
-  }) 
-    .then((fromServer) => fromServer.json())
-    .then((jsonFromServer) => main(jsonFromServer))
+    body: JSON.stringify(form)
+  })
     .catch((err) => {
-      console.log(err, 'error');
+      console.log(err);
     });
+  const json = await data.json(); // raw json data
+  console.log(json.length , '<=if this is < 1000 the app token isnt working');
+
+  // *********************  
+  // now that we have our data, we can run our button functioning below
+  // *********************
+
+  // grab our buttons from DOM using jQuery
+  const searchBtn = $('#search-btn');
+  const generateBtn = $('#generate');
+
+  // this will fire once the search button is clicked
+  searchBtn.on('click', (e) => {
+    console.log('e search ', e);
+    e.preventDefault(); // prevent event web default
+    const srchHdr = document.querySelector('#breakdown');
+    srchHdr.innerHTML = 'SEARCH WAS CLICKED';
+
+    // grab search input value
+    const searchquery = document.querySelector('#search').value; // search bar value
+    console.log('search query ', searchquery);
+
+    // pass search query into fxn to create container divs for results
+    // createSearch(searchquery, json);
+  });
+
+  // this will fire once the generate button is clicked
+  generateBtn.on('click', (e) => {
+    e.preventDefault(); // prevent event web default
+
+     // remove search options if generate clicked?
+    // do we want the split screen the entire time?
+    // or do we want the chart to take up most of the space?
+    if (document.querySelector('#searchForm')) {
+      $('#searchForm').remove();
+    }
+    
+    // for testing generateBtn functionality
+    const outputheader = document.querySelector('#breakdown');
+    outputheader.innerHTML = 'GENERATE WAS CLICKED, check console for *correct* array (use agency until we get the token working)';
+
+        // radio button (attribute) value
+        const attribute = document.querySelector('input[name="chart-list"]:checked').value;
+
+        // create array with json.length and map over it with json object
+        const arrayWithJsonLength = range(json.length);
+        const newArray = arrayWithJsonLength.map((arrayElement) => json[arrayElement]); // this converts our json object to an array
+      
+        // our final array reduces the array to the attribute and amount total spent per unique attribute chosen
+        const FinalArray = newArray.reduce((newChartDataArray, currentValue, index) => {
+          // find first value where label is same as xx attribute
+          const calculateAttributeCount = newChartDataArray.find((value) => value.label === currentValue[attribute]);
+          const budgetAmountFloat = parseFloat(currentValue.amount);
+          // checks if it is not in our chart data array
+          if (!calculateAttributeCount) {
+            newChartDataArray.push({
+              // append attribute and its value is the total amount spent
+              label: currentValue[attribute],
+              y: budgetAmountFloat
+            });
+          } else {
+            // if it's already in the array, update the value by adding the new (currentValue[attribute]) amount
+            const currentIndex = newChartDataArray.findIndex((value) => value.label === currentValue[attribute]);
+            newChartDataArray[currentIndex].y += budgetAmountFloat;
+          }
+          return newChartDataArray;
+        }, []);
+      
+        // prevents charts from piling on top of each other 
+        if (document.querySelector('#chartcontainer')) {
+          $('#chartcontainer').remove();
+        }
+        // create new div chart container and render chart
+        const chartDiv = document.createElement('div');
+        chartDiv.id = 'chartcontainer';
+        const chartOptions = renderChart(FinalArray);
+        const chart = new CanvasJS.Chart(chartDiv, chartOptions);
+        chart.render();
+        // append chart container to end of the chart form
+        $('#chartForm').append(chartDiv)
 });
-// questions: 
-// is it better to call a fxn with a listener inside or run the fxn inside a listener?
-// change generateChart() to renderChart()?
+}
+
+window.onload = mainThread;
+// NOTES & TO DO
+//   - app token from pg county (1000 records issue)
+//   - hit pg county when server turns on
+//   - presentation: note difficulties with api records
+//   - https://dev.socrata.com/foundry/data.princegeorgescountymd.gov/p32t-azw8
