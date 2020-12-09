@@ -1,4 +1,4 @@
-## [markdown styling:](http:www.markdownguide.org/basic-syntax/) `
+## [Click here for markdown styling!](http:www.markdownguide.org/basic-syntax/) `
 
 # team-central-services
  
