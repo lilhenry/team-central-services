@@ -22,6 +22,9 @@ We chose to use Bulma for a plethora of reasons. First, Bulma is responsive. It 
 ## How Our Final System Adressess the Problem
 
 ## Challenges Faced and Impact on Final Design
+* One of our first challenges was realizing retrieval was limited to 1000 records at a time. Our initial solution to part of this issue would be use of a token, but we did not have enough time to implement one for a greater volume of data intake
+* Another challenge we faced was having to reduce our bar chart options. A closer look at the data revealed values for two columns were nearly always the same. We decided columns with no distinguishable categories were useless for drawing conclusions and eliminated them from our options
+* Functions inside event listeners inside functions inside event listeners. Complicated script was difficult to debug and data ended up getting lost or passed incorrectly. To resolve this we implemented a main thread that eliminated nesting and was able to handle all event listeners and functions.
 
 ## Next Steps
 
