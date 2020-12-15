@@ -13,18 +13,17 @@ app.use(express.static('public')); // checks everything in public for matching d
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-App-Token, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-App-Token, X-Requested-With, Content-Type, app_token, Accept');
   next();
 });
 
 app.route('/api')
   .get(async (req, res) => {
-     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
+     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json?');
      const json = await data.json();
      console.log('GET request detected');
-     // res.header('Access-Control-Allow-Headers', 'X-App-Token');
+     res.header('Access-Control-Allow-Headers', 'X-App-Token, app_token');
      res.json(json);
-     console.log('GET request detected');
   })
   
   .post(async (req, res) => {
@@ -33,6 +32,7 @@ app.route('/api')
     // feeding our server the json 
     const data = await fetch('https://data.princegeorgescountymd.gov/resource/uh6s-izyj.json');
     const json = await data.json();
+    res.header('Access-Control-Allow-Headers', 'X-App-Token, app_token');
     res.json(json);
   });
 

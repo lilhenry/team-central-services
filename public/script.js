@@ -1,6 +1,14 @@
-// async function createSearch(searchQuery, json) {
-
-// }
+ async function createSearch(query, json) {
+  if (query === '' || query.startsWith('')) {
+    searchWord = 'null'
+  } 
+  const regx = json.filter((jsonObj) => {
+      const regex = new RegExp(query, 'gi');
+      return jsonObj.zip_code.match(regex) || jsonObj.agency.match(regex) || jsonObj.payee_name.match(regex);
+  });
+  console.log(regx);
+  return regx;
+}
 // this gives us an array to map our json object over
 // this gives us an array to map our json object over
 function range(int) {
@@ -48,7 +56,7 @@ async function mainThread() {
     headers: {
       'Content-Type': 'application/json',
       // need to figure out how to pass the token in the post headers 
-      // 'X-App-Token': '1ukZDsQi4C3DQhMJusKqTZD1s'
+      'app-token': '1ukZDsQi4C3DQhMJusKqTZD1s'
     },
     body: JSON.stringify(form)
   })
@@ -67,22 +75,50 @@ async function mainThread() {
   const generateBtn = $('#generate');
 
   // this will fire once the search button is clicked
-  searchBtn.on('click', (e) => {
+  searchBtn.on('click', async(e) => {
     console.log('e search ', e);
     e.preventDefault(); // prevent event web default
-    const srchHdr = document.querySelector('#breakdown');
-    srchHdr.innerHTML = 'SEARCH WAS CLICKED';
 
     // grab search input value
-    const searchquery = document.querySelector('#search').value; // search bar value
-    console.log('search query ', searchquery);
+    const searchQuery = document.querySelector('#search').value; // search bar value
+    console.log('search query ', searchQuery);
 
     // pass search query into fxn to create container divs for results
-    // createSearch(searchquery, json);
-  });
+    const searchResults = await createSearch(searchQuery, json); 
+    const srchHdr = document.querySelector('#breakdown');
+    const numResults = searchResults.length;
+    srchHdr.innerHTML = `Searching.. # of matches: ${numResults}`;
 
+    if (document.querySelector('#chartForm')) {
+      $('#chartForm').remove();
+    }
+
+    const resultDiv = document.createElement('div');
+      resultDiv.className = 'targetDiv is-centered';
+      $('#searchForm').append(resultDiv);
+
+      for (let obj = 0; obj < searchResults.length; obj += 1) { 	
+        const payee = searchResults[obj].payee_name;	
+        const agency = searchResults[obj].agency;	
+        const zip = searchResults[obj].zip_code;	
+        const amount = searchResults[obj].amount;	
+        const description = searchResults[obj].payment_description;	
+
+        // div append just to see/check api data is present	
+        const API = document.createElement('div');	
+        API.innerHTML = `<h4><span class='is-size-4'>payee:  </span>${payee}</h4>	
+                          <p><span class='is-size-4'>agency:  </span>${agency}</p>	
+                          <p><span class='is-size-4'>zip:  </span>${zip}</p>	
+                          <p><span class='is-size-4'>amount:  </span>${amount}</p>	
+                          <p><span class='is-size-4'>description:  </span>${description}</p>
+                          <br> `
+        API.className = 'box'
+        resultDiv.append(API);
+      }
+  });
+  
   // this will fire once the generate button is clicked
-  generateBtn.on('click', (e) => {
+  generateBtn.on('click', async(e) => {
     e.preventDefault(); // prevent event web default
 
      // remove search options if generate clicked?
@@ -94,7 +130,7 @@ async function mainThread() {
     
     // for testing generateBtn functionality
     const outputheader = document.querySelector('#breakdown');
-    outputheader.innerHTML = 'GENERATE WAS CLICKED, check console for *correct* array (use agency until we get the token working)';
+    outputheader.innerHTML = 'Generating bar chart..';
 
         // radio button (attribute) value
         const attribute = document.querySelector('input[name="chart-list"]:checked').value;
@@ -113,7 +149,7 @@ async function mainThread() {
             newChartDataArray.push({
               // append attribute and its value is the total amount spent
               label: currentValue[attribute],
-              y: budgetAmountFloat
+              y: Math.trunc(budgetAmountFloat)
             });
           } else {
             // if it's already in the array, update the value by adding the new (currentValue[attribute]) amount
@@ -130,11 +166,12 @@ async function mainThread() {
         // create new div chart container and render chart
         const chartDiv = document.createElement('div');
         chartDiv.id = 'chartcontainer';
+        chartDiv.className = 'is-vcentered';
         const chartOptions = renderChart(FinalArray);
         const chart = new CanvasJS.Chart(chartDiv, chartOptions);
         chart.render();
         // append chart container to end of the chart form
-        $('#chartForm').append(chartDiv)
+        await $('#chartForm').append(chartDiv);
 });
 }
 

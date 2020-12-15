@@ -1,13 +1,15 @@
 body {
     background-color: #f3f3f3;
+    font-family: 'Raleway', sans-serif;
 }
-
 .title {
-    padding-left: 25%;
+    
+    font-family: 'Raleway', sans-serif;
 }
-#chartContainer {
-height: 80%; 
-width: 100%;
+.canvasjs-chart-container {
+height: 60%; 
+width: 50%;
+justify-content: center;
 }
 
 .columns {
@@ -15,5 +17,6 @@ width: 100%;
 }
 
 h1 {
+    font-weight: 600;
     line-height: 150%;
 }
