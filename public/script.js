@@ -51,7 +51,7 @@ function renderChart(attributeArray) {
 async function mainThread() {
   const form = $(this).serializeArray();
   // data retrieval
-  const data = await fetch('http://localhost:3000/api', { // don't forget to change from http://localhost:3000/api
+  const data = await fetch('/api', { // don't forget to change from http://localhost:3000/api
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
