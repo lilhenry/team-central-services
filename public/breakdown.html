@@ -5,8 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Team Project Central Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>       
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
 
   <body>
@@ -15,7 +19,7 @@
       <!-- navigation -->
 
       <div class="container">
-        <a href="index.html" class="button is-small is-outlined is-rounded">home</a>
+        <a href="index.html" class="button is-small is-outlined is-rounded"><i class="fa fa-home fa-2x"></i></a>
       </div>
 
       <div class="container is-centered">
@@ -23,12 +27,15 @@
           <h1 class="title has-text-centered" id='breakdown'>BREAKDOWN</h1>
         </div>
 
+            <br>
+
         <div class="columns is-centered is-vcentered" >
 
           <!-- bar chart options -->
 
-          <form class=" column chartForm is-centered has-text-centered" id='chartForm'>
-            <h3 class='is-size-4'>Bar Chart</h3>
+          <div class="field column chartForm is-centered has-text-centered" id='chartForm'>
+            <span id='chart-content'>
+              <h3 class='is-size-4'>Bar Chart</h3>
             <h4>check attribute option</h4>
             <br>
             <ul class='chart-list'>
@@ -43,31 +50,30 @@
               <li><input type="radio" id="zip_code" name="chart-list" value="zip_code">
                 <label for="zip_code">zip_code</label>
               </li>
-              <li>
+            </ul> 
                 <br>
-                <button class="button is-black" type="submit" name="button" id='generate'>generate</button>
-              </li>
-            </ul>
-            <br>
-            <br>
-          </form>
+                <button class="button is-rounded is-link is-outlined" type="submit" name="button" id='generate'>generate chart</button>
+              </span>
+                <br>
+          </div>
 
           <!-- search bar -->
 
-          <form class=" column seachForm is-centered has-text-centered" id='searchForm'>
+          <div class="field column seachForm is-centered has-text-centered" id='searchForm'>
             <h3 class='is-size-4'>Search</h3>
             <h4>by any attribute</h4>
             <br>
             <ul class='search-list'>
-              <li>
-                <input type="text" class="textentry" placeholder="Ex: 20742" id="search"></input>
+              <li class='ml-6 mr-6'>
+                <input type="text" class=" input textentry" placeholder="Ex: 20742" id="search"></input>
               </li>
               <li>
                 <br>
-                <button class="button is-black" type="submit" name="button" id='search-btn'>search</button>
+                <button class="button is-rounded is-link is-outlined" type="submit" name="button" id='search-btn'>search</button>
               </li>
+              <br>
             </ul>
-          </form>
+          </div>
           
           <!-- rendered chart container -->
 
