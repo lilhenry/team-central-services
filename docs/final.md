@@ -1,5 +1,5 @@
 ## Developer Manual
-#### Arion Askins, Joelle Everettt, Lillian Henry
+
 [App Link](https://team-central-services.herokuapp.com/)
 
 ### Information Problem
@@ -39,3 +39,5 @@ If we were to continue developing this application, our main focus would be on m
 First, since the process of creating a bar chart category/bar relies upon finding exact matches for the column of interest and grouping them together, we have found that misspellings or slight differences in data entry can cause individual elements that convey the same information to be categorized into different bars. Thus we would attempt to incorporate preprocessing to catch entries that have essentially identical category values and resolve the small differences in the elements of data such that the bar chart accurately displays each bar, without duplicates.
 
 Second, our search bar currently only searches based on exact matches, and we think that being able to match using a sort of regular expression concept and/or a similarity measure could greatly expand the usefulness of this function. Giving the query some flexibility could return a much more well-rounded result set, as being able to add other dimensions of the data to the face value of the exact query could provide new insights. For example, if someone searched a city name in an area they are interested in, the search function could also provide results based on the zip code that corresponds to that city, to offer some help and expand the possible results.
+
+#### Collaborated and designed by: Arion Askins, Joelle Everettt, Lillian Henry
