@@ -16,6 +16,10 @@ The residents of Prince George's County  are stakeholders because they are being
 
 ## Chosen Strategies/Solutions
 
+We chose to create an app that provides two ways in which a user can view the data: a bar chart and a search bar.
+
+Including these two functionalities allows for interaction with both aggregate data (in the bar chart) and specific queries (in the search bar). These are relatively easy to use and provide multiple attributes with which a user can analyze specific aspects of county expenditures. For example, if someone is interested in the primary purposes of Prince George's County's expenditures, they may choose to generate a bar chart based on the agency to see where relative proportions of money are going. Or, if they want to confirm whether the county has a contract with a certain company, they can use the search bar to find transactions with specific payees.
+
 ## Technical System Decision Rationale
 We chose to use Bulma for a plethora of reasons. First, Bulma is responsive. It will look great on both mobile and desktop, and based on flexbox, our favorite! Second, it's modular.. Bulma allowed us to pick and choose relevant elements such as tabs, navigation bar, dropdown (and more!). Lastly, it's aesthetic was appealing. Bulma builds beautiful minimalist pages that will make our app look modern.
 
