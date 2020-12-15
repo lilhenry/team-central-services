@@ -14,6 +14,8 @@ The residents of Prince George's County  are stakeholders because they are being
 
 ## Data You Chose to Work With
 
+We are working with budget data from PG county; specifically, a dataset of fiscal year spending information by payment disclosure.
+
 ## Chosen Strategies/Solutions
 
 We chose to create an app that provides two ways in which a user can view the data: a bar chart and a search bar.
