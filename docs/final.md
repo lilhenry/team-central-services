@@ -18,7 +18,7 @@ The residents of Prince George's County  are stakeholders because they are being
 
 We chose to create an app that provides two ways in which a user can view the data: a bar chart and a search bar.
 
-Including these two functionalities allows for interaction with both aggregate data (in the bar chart) and specific queries (in the search bar). These are relatively easy to use and provide multiple attributes with which a user can analyze specific aspects of county expenditures. For example, if someone is interested in the primary purposes of Prince George's County's expenditures, they may choose to generate a bar chart based on the agency to see where relative proportions of money are going. Or, if they want to confirm whether the county has a contract with a certain company, they can use the search bar to find transactions with specific payees.
+Including these two functionalities allows for interaction with both aggregate data (in the bar chart) and pinpointed queries (in the search bar). These are easy to use and provide multiple attributes with which a user can analyze specific aspects of county expenditures. For example, if someone is interested in the primary purposes of Prince George's County's expenditures, they may choose to generate a bar chart based on the agency to see where relative proportions of money are going. Or, if they want to confirm whether the county has a contract with a certain company, they can use the search bar to find transactions with specific payees.
 
 ## Technical System Decision Rationale
 We chose to use Bulma for a plethora of reasons. First, Bulma is responsive. It will look great on both mobile and desktop, and based on flexbox, our favorite! Second, it's modular.. Bulma allowed us to pick and choose relevant elements such as tabs, navigation bar, dropdown (and more!). Lastly, it's aesthetic was appealing. Bulma builds beautiful minimalist pages that will make our app look modern.
@@ -32,3 +32,8 @@ We chose to use Bulma for a plethora of reasons. First, Bulma is responsive. It 
 
 ## Next Steps
 
+If we were to continue developing this application, our main focus would be on more rigorous preprocessing of the data and on improving the matching of the search function.
+
+First, since the process of creating a bar chart category/bar relies upon finding exact matches for the column of interest and grouping them together, we have found that misspellings or slight differences in data entry can cause individual elements that convey the same information to be categorized into different bars. Thus we would attempt to incorporate preprocessing to catch entries that have essentially identical category values and resolve the small differences in the elements of data such that the bar chart accurately displays each bar, without duplicates.
+
+Second, our search bar currently only searches based on exact matches, and we think that being able to match using a sort of regular expression concept and/or a similarity measure could greatly expand the usefulness of this function. Giving the query some flexibility could return a much more well-rounded result set, as being able to add other dimensions of the data to the face value of the exact query could provide new insights. For example, if someone searched a city name in an area they are interested in, the search function could also provide results based on the zip code that corresponds to that city, to offer some help and expand the possible results.
