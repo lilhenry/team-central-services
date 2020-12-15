@@ -1,4 +1,4 @@
-## PRINCE GEORGE’S COUNTY CENTRAL SERVICES EXPENDITURES BUDGET BREAKDOWN
+## Developer Manual
 #### Arion Askins, Joelle Everettt, Lillian Henry
 [App Link](https://team-central-services.herokuapp.com/)
 
