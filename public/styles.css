@@ -17,6 +17,6 @@ justify-content: center;
 }
 
 h1 {
-  /*   font-family: 'Frank Ruhl Libre', serif; */
     font-weight: 600;
+    line-height: 150%;
 }

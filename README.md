@@ -1,4 +1,4 @@
-` [markdown styling:](http:www.markdownguide.org/basic-syntax/) `
+## [Click here for markdown styling!](http:www.markdownguide.org/basic-syntax/) `
 
 # team-central-services
  
@@ -7,7 +7,7 @@ This is our Fall 2020 INST 377 group project.
 ## Project Description
 
 * Description of your project
-* Link to the Heroku instance where your application can be used
+* [Link to the Heroku instance where your application can be used](https://team-central-services.herokuapp.com/)
 * Description of target browsers (iOS? Android? Which ones? Which versions?)
 * Link to User Manual
 * Link to Developer Manual
