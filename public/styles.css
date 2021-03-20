@@ -2,6 +2,10 @@ body {
     background-color: #f3f3f3;
     font-family: 'Raleway', sans-serif;
 }
+.wrapper {
+    height: 100vh;
+}
+
 .title {
     
     font-family: 'Raleway', sans-serif;
