@@ -40,3 +40,15 @@ First, since the process of creating a bar chart category/bar relies upon findin
 
 Second, our search bar currently only searches based on exact matches, and we think that being able to match using a sort of regular expression concept and/or a similarity measure could greatly expand the usefulness of this function. Giving the query some flexibility could return a much more well-rounded result set, as being able to add other dimensions of the data to the face value of the exact query could provide new insights. For example, if someone searched a city name in an area they are interested in, the search function could also provide results based on the zip code that corresponds to that city, to offer some help and expand the possible results.<br>
 <br>[link to final doc/manual](/docs/final.md)
+=======
+## PRINCE GEORGE’S COUNTY CENTRAL SERVICES EXPENDITURES BUDGET BREAKDOWN
+#### Arion Askins, Joelle Everettt, Lillian Henry
+
+## App Description
+
+[External link to our App!](https://team-central-services.herokuapp.com/)
+
+* Designed for mobile and desktop platforms!
+
+[Full Developer Manual accessible here!](docs/final.md)
+
