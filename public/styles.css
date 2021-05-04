@@ -1,6 +1,14 @@
 body {
     background-color: #f3f3f3;
     font-family: 'Raleway', sans-serif;
+    min-height: 100vh;
+    padding-top: 30vh;
+}
+.wrapper {
+    min-height: 100vh;
+}
+#about {
+    margin-bottom: 1rem;
 }
 .title {
     
